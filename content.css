@@ -1,0 +1,17 @@
+#whut-ai-overlay {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999999;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  color: #eee;
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  display: none;
+  max-width: 320px;
+  backdrop-filter: blur(8px);
+}

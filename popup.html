@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WHUT AI 答题助手</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>WHUT AI 答题助手</h1>
+      <span class="status-dot" id="statusDot"></span>
+    </header>
+
+    <section class="stats" id="statsBar" style="display:none">
+      <span>📝 日志 <b id="statLogs">0</b> 条</span>
+      <span>❓ 题目 <b id="statQuestions">0</b> 道</span>
+      <span>⌨️ 输入框 <b id="statInputs">0</b> 个</span>
+    </section>
+
+    <section class="actions">
+      <button id="btnGrab" class="btn btn-secondary">📋 抓取题目</button>
+      <button id="btnFill" class="btn btn-primary" disabled>🚀 生成并填入</button>
+    </section>
+
+    <section class="watch">
+      <button id="btnWatch" class="btn btn-watch">📺 扫描并打开「自主观看」任务</button>
+      <div class="hint watch-hint" id="watchHint"></div>
+    </section>
+
+    <section class="finish">
+      <button id="btnFinish" class="btn btn-secondary">✅ 立即点击「点我完成任务」</button>
+      <div class="hint finish-hint" id="finishHint">轮询状态：视频播完后每 30 秒自动点击一次</div>
+    </section>
+
+    <section class="objective">
+      <div class="objective-actions">
+        <button id="btnScanObjective" class="btn btn-secondary">🎯 扫描客观题</button>
+        <button id="btnAnswerObjective" class="btn btn-primary" disabled>🤖 AI 作答并勾选</button>
+      </div>
+      <div class="hint" id="objectiveHint">支持单选题、多选题、判断题</div>
+    </section>
+
+    <section class="select-all" id="objectiveSelectAllRow" style="display:none">
+      <label><input type="checkbox" id="chkAllObjective" checked> 全选</label>
+      <span class="hint" id="objectiveMatchHint"></span>
+    </section>
+
+    <section class="result" id="objectiveSection" style="display:none">
+      <div id="objectiveList" class="question-list"></div>
+    </section>
+
+    <section class="speed">
+      <div class="speed-head">
+        <span>⚡ 视频倍速（拖动立即生效）</span>
+        <b id="speedValue">4x</b>
+      </div>
+      <input type="range" id="speedRange" min="4" max="16" step="4" value="4">
+      <div class="speed-ticks">
+        <span>4x</span>
+        <span>8x</span>
+        <span>12x</span>
+        <span>16x</span>
+      </div>
+    </section>
+
+    <section class="select-all" id="selectAllRow" style="display:none">
+      <label><input type="checkbox" id="chkAll" checked> 全选</label>
+      <span class="hint" id="matchHint"></span>
+    </section>
+
+    <section class="result" id="resultSection" style="display:none">
+      <div id="questionList" class="question-list"></div>
+    </section>
+
+    <section class="raw-log">
+      <button id="btnToggleRaw" class="btn-link">🐞 查看原始日志</button>
+      <pre id="rawLog" class="raw-log-pre" style="display:none"></pre>
+    </section>
+
+    <section class="config-toggle">
+      <button id="btnToggleConfig" class="btn-link">⚙️ API 设置</button>
+    </section>
+
+    <section class="config" id="configSection" style="display:none">
+      <label>
+        <span>API 地址</span>
+        <input type="text" id="apiUrl" placeholder="https://api.openai.com/v1/chat/completions">
+      </label>
+      <label>
+        <span>API Key</span>
+        <input type="password" id="apiKey" placeholder="sk-...">
+      </label>
+      <label>
+        <span>模型</span>
+        <input type="text" id="model" placeholder="gpt-4o-mini">
+      </label>
+      <label>
+        <span>系统提示词</span>
+        <textarea id="systemPrompt" rows="3"></textarea>
+      </label>
+      <button id="btnSave" class="btn btn-save">💾 保存设置</button>
+    </section>
+
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

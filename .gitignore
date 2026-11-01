@@ -1,0 +1,12 @@
+node_modules/
+dist/
+tmp/
+*.zip
+*.log
+.env
+.env.*
+config.local.json
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

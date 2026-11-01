@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "WHUT AI 答题助手",
+  "version": "1.9.11",
+  "description": "抓取课程题目并调用 AI 作答（简答题填入、单选/多选/判断题自动勾选），可一键扫描并打开「自主观看」任务链接，视频播完后自动点击「点我完成任务」，同时自动屏蔽账号安全提示弹窗",
+  "permissions": ["storage", "activeTab", "scripting", "alarms"],
+  "host_permissions": [
+    "https://whut.ai-augmented.com/*",
+    "https://infra.ai-augmented.com/*",
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://whut.ai-augmented.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": ["https://infra.ai-augmented.com/*"],
+      "js": ["security-popup.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
